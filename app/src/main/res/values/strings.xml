@@ -1,0 +1,171 @@
+<resources>
+    <string name="app_name">AndroidStudioActivity</string>
+    <string name="gt"> getType() - This method will return the MIME type of data to given content URI. 
+
+    public String getType(Uri uri) {
+        switch (uriMatcher.match(uri)) {
+            case uriCode:
+                return "vnd.android.cursor.dir/users";
+            default:
+                throw new IllegalArgumentException("Unsupported URI: " + uri);
+    	}
+	}
+</string>
+    <string name="query">Query() - It receives a request from the client. By using arguments it will get a data from the requested table and return the data as a Cursor object.
+
+    public Cursor query(Uri uri, String[] projection, String selection,
+                    	String[] selectionArgs, String sortOrder) {
+    	SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+    	qb.setTables(TABLE_NAME);
+
+        switch (uriMatcher.match(uri)) {
+            case uriCode:
+      	      qb.setProjectionMap(values);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+    	}
+        if (sortOrder == null || sortOrder == "") {
+    sortOrder = id;
+    }
+    Cursor c = qb.query(db, projection, selection, selectionArgs, null,
+    null, sortOrder);
+    c.setNotificationUri(getContext().getContentResolver(), uri);
+    return c;
+    }
+</string>
+    <string name="insert">insert() - This method will insert a new row into our content provider and it will return the content URI for newly inserted row.
+
+    public Uri insert(Uri uri, ContentValues values) {
+        long rowID = db.insert(TABLE_NAME, "", values);
+    if (rowID > 0) {
+    Uri _uri = ContentUris.withAppendedId(CONTENT_URI, rowID);
+    getContext().getContentResolver().notifyChange(_uri, null);
+    return _uri;
+    }
+    throw new SQLiteException("Failed to add a record into " + uri);
+    }
+</string>
+    <string name="update">update() - This method will update existing rows in our content provider and it returns the number of rows updated.
+
+    public int update(Uri uri, ContentValues values, String selection,
+                  	String[] selectionArgs) {
+        int count = 0;
+        switch (uriMatcher.match(uri)) {
+            case uriCode:
+            	count = db.update(TABLE_NAME, values, selection, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+    	}
+    	getContext().getContentResolver().notifyChange(uri, null);
+        return count;
+	}
+</string>
+    <string name="delete">delete() - This method will delete the rows in our content provider and it returns the number of rows deleted.
+
+    public int delete(Uri uri, String selection, String[] selectionArgs) {
+        int count = 0;
+        switch (uriMatcher.match(uri)) {
+            case uriCode:
+            	count = db.delete(TABLE_NAME, selection, selectionArgs);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+    	}
+	    getContext().getContentResolver().notifyChange(uri, null);
+        return count;
+	}
+</string>
+    <string name="breceive"> public class MyBroadcastReceiver extends BroadcastReceiver {
+        private static final String TAG = "MyBroadcastReceiver";
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Action: " + intent.getAction() + "\n");
+    sb.append("URI: " + intent.toUri(Intent.URI_INTENT_SCHEME).toString() + "\n");
+    String log = sb.toString();
+    Log.d(TAG, log);
+    Toast.makeText(context, log, Toast.LENGTH_LONG).show();
+    }
+    }</string>
+    <string name="declarebr"> To register the broadcast it must be put into the manifest using the android names "android.intent.action.BOOT_COMPLETED" and "android.intent.action.INPUT_METHOD_CHANGED" between a receiver tag. The android name and android exported="true" must be placed in the receiver tag.
+
+            To register a receiver within a certain context, an instance must be created.
+
+            ex. BroadcastReceiver br = new MyBroadcastReceiver();
+
+            In addition, the Intent filter must be created.
+
+            IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+            filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+            this.registerReceiver(br, filter);
+</string>
+    <string name="activity_ex"> TextView textView;
+
+// some transient state for the activity instance
+String gameState;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    // call the super class onCreate to complete the creation of activity like
+    // the view hierarchy
+    super.onCreate(savedInstanceState);
+
+    // recovering the instance state
+    if (savedInstanceState != null) {
+        gameState = savedInstanceState.getString(GAME_STATE_KEY);
+    }
+
+    // set the user interface layout for this activity
+    // the layout file is defined in the project res/layout/main_activity.xml file
+    setContentView(R.layout.main_activity);
+
+    // initialize member TextView so we can manipulate it later
+    textView = (TextView) findViewById(R.id.text_view);
+}
+
+// This callback is called only when there is a saved instance that is previously saved by using
+// onSaveInstanceState(). We restore some state in onCreate(), while we can optionally restore
+// other state here, possibly usable after onStart() has completed.
+// The savedInstanceState Bundle is same as the one used in onCreate().
+@Override
+public void onRestoreInstanceState(Bundle savedInstanceState) {
+    textView.setText(savedInstanceState.getString(TEXT_VIEW_KEY));
+}
+
+// invoked when the activity may be temporarily destroyed, save the instance state here
+@Override
+public void onSaveInstanceState(Bundle outState) {
+    outState.putString(GAME_STATE_KEY, gameState);
+    outState.putString(TEXT_VIEW_KEY, textView.getText());
+
+    // call superclass to save any view hierarchy
+    super.onSaveInstanceState(outState);
+}</string>
+    <string name="broadcastr"> System broadcasts are sent to all apps that are subscribed to receive the notification events. An example of an intent used would be android.intent.action.AIRPLANE_MODE. Once a broadcast receiver si declared in the manifest, the system will not start until the broadcast has been sent.</string>
+    <string name="content_ds">The content providers encapsulate data and deliver content to various different applications by use of the Content Resolver interface. The Content Resolver makes the request and inspects the authority of the given Uniform Resource Identifier and passes the request to the content provider. For example, it is because of this feature you are able to sign into a plethora of applications using your facebook login information.</string>
+    <string name="query_uri">Query(Uri, String[], Bundle, CancellationSignal)</string>
+    <string name="oncreate">onCreate()</string>
+    <string name="insert_uri_contentvalues">insert(Uri, ContentValues)</string>
+    <string name="update_uri_contentvalues_bundle">update(Uri, ContentValues, Bundle)</string>
+    <string name="delete_uri_bundle">delete(Uri, Bundle)</string>
+    <string name="gettype_uri">getType(Uri)</string>
+    <string name="primary_methods">Primary Methods that need to be implemented...</string>
+    <string name="oc">onCreate() - This method will initialize our provider. The android system will call this method immediately after it creates our provider. public boolean onCreate() { Context context = getContext(); DatabaseHelper dbHelper = new DatabaseHelper(context); db = dbHelper.getWritableDatabase(); if (db != null) { return true; } return false; }</string>
+    <string name="content_p">Content Providers cont...</string>
+    <string name="safe">Safe</string>
+    <string name="go_back">Go back</string>
+    <string name="content_providers">Content Providers</string>
+    <string name="broadcast_receiver">Broadcast Receiver</string>
+    <string name="amber_alert">Amber Alert</string>
+    <string name="the_stages">The Android system begins code in an Activity instance (variables, objects, methods defined inside of the Java class) by invoking specific callback methods (methods that get called when an event happens) that correspond to specific stages of its lifecycle.</string>
+    <string name="example2activity">Text View</string>
+    <string name="activities123">Activities</string>
+    <string name="sendintent">// Create the text message with a string Intent sendIntent = new Intent(); sendIntent.setAction(Intent.ACTION_SEND); sendIntent.setType(text/plain); sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage); // Start the activity startActivity(sendIntent);</string>
+    <string name="how_to_call">How to call an Activity!</string>
+    <string name="type_here">Type Here...</string>
+    <string name="pop_q">Pop Quiz: Which method returns the MIME type of data?</string>
+    <string name="submit">Submit</string>
+    <string name="textviewW">TextView</string>
+</resources>

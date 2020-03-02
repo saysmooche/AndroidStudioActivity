@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="306dp"
+                android:layout_height="53dp"
+                android:layout_gravity="center|start|right|center_horizontal"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/content_providers"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/content_descrip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/content_descrip"
+                android:layout_width="318dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-light"
+                android:orientation="vertical"
+                android:text="@string/content_ds"
+                app:layout_constraintBottom_toTopOf="@+id/implement"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/implement"
+                android:layout_width="272dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="69dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="70dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/primary_methods"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/buttoncreate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_descrip" />
+
+            <Button
+                android:id="@+id/buttoncreate"
+                android:layout_width="286dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginEnd="65dp"
+                android:layout_marginBottom="7dp"
+                android:background="#F4BFBF"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/oncreate"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/buttongettype"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/implement" />
+
+            <Button
+                android:id="@+id/buttonquery"
+                android:layout_width="286dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="63dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="62dp"
+                android:layout_marginBottom="4dp"
+                android:background="#F4BFBF"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/query_uri"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/back_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttondelete" />
+
+            <Button
+                android:id="@+id/buttoninsert"
+                android:layout_width="286dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="63dp"
+                android:layout_marginBottom="4dp"
+                android:background="#F4BFBF"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/insert_uri_contentvalues"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonupdate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttongettype" />
+
+            <Button
+                android:id="@+id/buttonupdate"
+                android:layout_width="286dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="63dp"
+                android:layout_marginBottom="4dp"
+                android:background="#F4BFBF"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/update_uri_contentvalues_bundle"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/buttondelete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttoninsert" />
+
+            <Button
+                android:id="@+id/buttondelete"
+                android:layout_width="286dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="62dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="#F4BFBF"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/delete_uri_bundle"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonquery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonupdate" />
+
+            <Button
+                android:id="@+id/buttongettype"
+                android:layout_width="286dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="62dp"
+                android:layout_marginBottom="4dp"
+                android:background="#F4BFBF"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/gettype_uri"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/buttoninsert"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttoncreate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="62dp"
+                android:layout_marginEnd="62dp"
+                android:text="@string/pop_q"
+                android:textColor="@android:color/background_dark"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/buttongettype">
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/editTextquiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginEnd="62dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/type_here"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="90dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="12dp"
+                android:background="#D62B2B"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/submit"
+                android:textColor="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextquiz" />
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="90dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="12dp"
+                android:background="#D62B2B"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/go_back"
+                android:textColor="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonquery" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
